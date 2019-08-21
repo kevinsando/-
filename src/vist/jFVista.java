@@ -17,7 +17,6 @@ public class jFVista extends javax.swing.JFrame {
         initComponents();
     }
 
-    javax.swing.Timer timer = new javax.swing.Timer(1000, (ActionListener) this);
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -72,19 +71,17 @@ public class jFVista extends javax.swing.JFrame {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
-        timer.start();
-        initComponents();
+
         int c=10;
         Random rand = new Random();
         this.setLayout(null);
         int i = rand.nextInt(200);
         int j = rand.nextInt(300);
-        //if(timer.)
         if (jRadioButton1.isEnabled() == true) {
                 jLabel1.setBounds(i, j, 70, 70);
 
         }
-         if (jRadioButton1.isEnabled() == true) {
+         if (jRadioButton1.isEnabled() == false) {
                 jLabel1.setBounds(i, j, 70, 70);
 
         }
