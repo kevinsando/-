@@ -5,6 +5,9 @@
  */
 package vist;
 
+import java.awt.Color;
+import java.util.Random;
+
 /**
  *
  * @author Kevin
@@ -15,6 +18,8 @@ public class jFVista extends javax.swing.JFrame {
      * Creates new form jFVista
      */
     public jFVista() {
+
+        this.setBackground(Color.WHITE);
         initComponents();
     }
 
@@ -32,9 +37,8 @@ public class jFVista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Bola");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\dell\\Desktop\\Bola-Patagonia-thumb-600x600_580x_07bdfaaf-6bba-4c02-95f2-49c0992af694_580x.png")); // NOI18N
 
-        jRadioButton1.setText("jRadioButton1");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -48,7 +52,7 @@ public class jFVista extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(164, 164, 164)
                 .addComponent(jLabel1)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jRadioButton1)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -59,7 +63,7 @@ public class jFVista extends javax.swing.JFrame {
                 .addComponent(jRadioButton1)
                 .addGap(102, 102, 102)
                 .addComponent(jLabel1)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -67,11 +71,16 @@ public class jFVista extends javax.swing.JFrame {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
+        Random rand = new Random();
         this.setLayout(null);
-        int i=0;
-        if(jRadioButton1.isSelected()==true){
-            jLabel1.setBounds(i, i, 40, 30);
-            i++;
+        int i = rand.nextInt(200);
+        int j = rand.nextInt(300);
+        jRadioButton1.setEnabled(true);
+        if (jRadioButton1.isEnabled() == true) {
+                jLabel1.setBounds(i, j, 70, 70);
+               jRadioButton1.setEnabled(false);
+            
+
         }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
