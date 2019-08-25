@@ -12,11 +12,11 @@ import vist.Game;
 
 public class Raqueta {
 
-    private static final int Y = 330;
+    private static final int Y = 310;
     private static final int WIDTH = 60;
     private static final int HEIGHT = 20;
 
-    int x = 2;
+    int x = 140;
     int xa = 0;
     private Game game;
 

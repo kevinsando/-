@@ -2,6 +2,8 @@
 package controller;
 
 import java.awt.Color;
+import static java.awt.Color.GREEN;
+import static java.awt.Color.RED;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -15,9 +17,13 @@ public class circulo {
     int x = 20;
     int xa = 0;
     private Game game;
+    private RaquetaPuntos R1;
+    private RaquetaPuntos R2;
 
     public circulo(Game game) {
         this.game = game;
+        this.R1 = new RaquetaPuntos(game, 240, 100);
+        this.R2 = new RaquetaPuntos(game, 25, 100);
     }
 
     public void move() {
@@ -29,6 +35,8 @@ public class circulo {
     public void paint(Graphics2D g) {
         //g.fillOval(x, Y, WIDTH, WIDTH);
         g.drawOval(x, Y, WIDTH, WIDTH);
+        R1.paint(g, 200, RED);
+        R2.paint(g, 200, RED);
         //g.setColor(Color.red);
 
     }
