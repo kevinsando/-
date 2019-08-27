@@ -15,8 +15,8 @@ import vist.Game;
  * @author MIGUEL
  */
 public class RaquetaPuntos {
-    private static final int WIDTH = 60;
-    private static final int HEIGHT = 20;
+    private static final int WIDTH = 100;
+    private static final int HEIGHT = 100;
     int Y;
     int X;
     Game game;
@@ -29,8 +29,7 @@ public class RaquetaPuntos {
     }
     
     public void paint(Graphics2D g, double x, Color c) {
-        g.draw(getBounds());
-        g.fillRect(X, Y, WIDTH, HEIGHT);
+        g.drawArc(X, Y, WIDTH, HEIGHT, 90, 90);
         g.setColor(c);
 //        AffineTransform orig = g.getTransform();
 //        g.rotate(Math.toRadians(90));
