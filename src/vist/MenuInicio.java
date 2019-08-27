@@ -5,13 +5,15 @@
  */
 package vist;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Kevin
  */
 public class MenuInicio extends javax.swing.JFrame {
 
-    public Game game = new Game();
+    private Game game = new Game();
     public boolean stade;
 
     /**
@@ -22,6 +24,7 @@ public class MenuInicio extends javax.swing.JFrame {
         // jButton1.setSelected(false);
         setLocationRelativeTo(null);
         jRadioButton1.setSelected(false);
+        //game.show(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -96,49 +99,37 @@ public class MenuInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        game.show(false);
         if (jRadioButton1.isSelected()) {
-            game.show();
-            stade = true;
+            // game.show(true);
+            //stade = true;
         }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
-    public boolean getButton() {
-        // stade = true;
-        return (stade);
-    }
+//    public boolean getButton() {
+//        // stade = true;
+//        return (stade);
+//    }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public static void main(String args[]) throws InterruptedException {
 
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MenuInicio().setVisible(true);
-//            }
-//        });
+        JFrame frame = new JFrame("DODGEBALL");
+        // frame.setContentPane(new JLabel(new ImageIcon("Bola-Patagonia-thumb-600x600_580x_07bdfaaf-6bba-4c02-95f2-49c0992af694_580x.png")));
+        frame.setLocationRelativeTo(null);
+        Game game = new Game();
+        frame.add(game);
+        frame.setSize(400, 400);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        while (true) {
+            game.move();
+            game.repaint();
+            Thread.sleep(10);
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
