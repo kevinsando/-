@@ -12,13 +12,14 @@ import javafx.scene.shape.Circle;
 import vist.Game;
 
 public class Ball {
-
+    private Game game;
+    //public contador c = new contador(game);
     private static final int DIAMETER = 30;
-    int x = 0;
-    int y = 0;
+    int x = 1;
+    int y = 1;
     int xa = 1;
     int ya = 1;
-    private Game game;
+    
 
 
     public Ball(Game aThis) {
@@ -48,8 +49,10 @@ public class Ball {
         y = y + ya;
     }
 
-    public boolean collision() {
+    public boolean collision() {//colisión con raqueta
+       // c.setPuntaje(1);
         return game.racquet.getBounds().intersects(getBounds());
+        
 
     }
 
@@ -64,8 +67,7 @@ public class Ball {
         return new Circle(x, y, DIAMETER);
 }
 
-    public void paint(Graphics2D g2d) {
-       
+    public void paint(Graphics2D g2d) {    
         g2d.fillOval(x, y, DIAMETER, DIAMETER);
     }
 

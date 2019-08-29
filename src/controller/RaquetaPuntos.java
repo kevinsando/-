@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import java.awt.Color;
@@ -15,8 +11,8 @@ import vist.Game;
  * @author MIGUEL
  */
 public class RaquetaPuntos {
-    private static final int WIDTH = 100;
-    private static final int HEIGHT = 100;
+    public  int WIDTH = 100;
+    public  int HEIGHT = 100;
     int Y;
     int X;
     Game game;
@@ -28,12 +24,16 @@ public class RaquetaPuntos {
         this.Y = y;
     }
     
-    public void paint(Graphics2D g, double x, Color c) {
-        g.drawArc(X, Y, WIDTH, HEIGHT, 90, 90);
+    public void paint(Graphics2D g,  Color c,int x,int y, int w,int h,int sA, int aA,int tang) {
+        WIDTH=w;
+        HEIGHT=h;
+        X= x;
+        Y =y;
+        g.drawArc(x, y, w, h, sA, aA);//z=145, k=45
         g.setColor(c);
-//        AffineTransform orig = g.getTransform();
-//        g.rotate(Math.toRadians(90));
-//        g.setTransform(orig);
+        if(x>150){
+        g.rotate(tang, x, y);
+        }
     }
     
     public Rectangle getBounds() {
@@ -44,7 +44,7 @@ public class RaquetaPuntos {
         return game.ball.getBounds().intersects(getBounds());
     }
     
-    public void rotar(double x, Graphics2D g){
-        g.rotate(x);
+    public void rotar(double x,double y,double z, Graphics2D g){
+        g.rotate(x, y, z);
     }
 }
