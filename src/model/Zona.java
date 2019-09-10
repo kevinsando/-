@@ -1,30 +1,30 @@
 
-package controller;
+package model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
-import vist.Game;
+
 /**
  *
  * @author MIGUEL
  */
-public class RaquetaPuntos {
+public class Zona {//Modelo
     public  int WIDTH = 100;
     public  int HEIGHT = 100;
     int Y;
     int X;
-    Game game;
+ //  Game game;
     
     
-    public RaquetaPuntos(Game game, int x, int y){
-        this.game = game;
-        this.X = x;
-        this.Y = y;
+    public Zona( /*int x, int y*/){
+   //     this.game = game;
+        this.X = 1;//x;
+        this.Y = 1;//y;
     }
     
-    public void paint(Graphics2D g,  Color c,int x,int y, int w,int h,int sA, int aA,int tang) {
+    public void paint(Graphics2D g,  Color c,int x,int y, int w,int h,int sA, int aA,int tang) {//No va
         WIDTH=w;
         HEIGHT=h;
         X= x;
@@ -41,10 +41,11 @@ public class RaquetaPuntos {
     }
     
     public boolean collision(){
-        return game.ball.getBounds().intersects(getBounds());
+       // return game.ball.getBounds().intersects(getBounds());
+       return false;
     }
     
-    public void rotar(double x,double y,double z, Graphics2D g){
+    public void rotar(double x,double y,double z, Graphics2D g){//No va
         g.rotate(x, y, z);
     }
 }
