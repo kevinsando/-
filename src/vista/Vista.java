@@ -129,4 +129,5 @@ public class Vista extends JPanel implements Observer, ActionListener {
 * Problema velocidad bola y raqueta
 * Zonas
 * Contador
+*
 */
