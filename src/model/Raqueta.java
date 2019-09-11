@@ -24,10 +24,10 @@ public class Raqueta {//Modelo
     public void move(boolean izquierda, boolean derecha, boolean arriba, boolean abajo) {
         if (izquierda || derecha) {
             if (izquierda) {
-                xa = -1;
+                xa = -4;
             }
             if (derecha) {
-                xa = +1;
+                xa = +4;
             }
             x = x + xa;
         }

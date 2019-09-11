@@ -13,6 +13,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -36,12 +37,7 @@ public class Vista extends JPanel implements Observer, ActionListener {
         setFocusable(true);
         iniciar();
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-    }
-
-    public void initGame() {
-        timer = new Timer(DELAY, this);
-        timer.start();
-
+        iniciarComponentes();
     }
 
     @Override
@@ -56,8 +52,10 @@ public class Vista extends JPanel implements Observer, ActionListener {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         //--------------------------Dibuja bola-----------------------
-        g2d.drawOval(control.getXBall(), control.getYBall(), control.getDIAMETERBall(), control.getDIAMETERBall());
-        g2d.fillOval(control.getXBall(), control.getYBall(), control.getDIAMETERBall(), control.getDIAMETERBall());
+        for(int i = 0; i < control.TamanoArreglo(); i++){
+        g2d.drawOval(control.getXBall(i), control.getYBall(i), control.getDIAMETERBall(i), control.getDIAMETERBall(i));
+        g2d.fillOval(control.getXBall(i), control.getYBall(i), control.getDIAMETERBall(i), control.getDIAMETERBall(i));
+        }
 
         //--------------------------Dibuja Raqueta----------------------
         g2d.drawRect(control.getXRaqueta(), control.getYRaqueta(), control.getWIDTHRaqueta(), control.getHEIGHTRaqueta());
@@ -68,15 +66,10 @@ public class Vista extends JPanel implements Observer, ActionListener {
 
         mb.setVisible(true);
         mb.setBackground(Color.red);
-        JMenu menu1 = new JMenu("File");
-        JMenu menu2 = new JMenu("Edit");
-        JMenu menu3 = new JMenu("About");
-        mb.add(menu1);
-        mb.add(menu2);
-        mb.add(menu3);
-        this.add(mb);
         if (enablee) {
-            control.colisionBall();
+            for(int i = 0; i < control.TamanoArreglo(); i++){
+                control.colisionBall(i);
+            }
             control.moveBall();
             control.mostrarContador();
 
@@ -88,6 +81,38 @@ public class Vista extends JPanel implements Observer, ActionListener {
 
     public void changeColor() {
         this.setBackground(Color.red);
+    }
+    
+    public void pausar(){
+        timer.stop();
+        repaint();
+    }
+    
+    public void continuar(){
+        timer.start();
+        repaint();
+    }
+    
+    private void iniciarComponentes(){
+        JMenu menu1 = new JMenu("File");
+        JMenu menu2 = new JMenu("Edit");
+        JMenu menu3 = new JMenu("About");
+        menu3.addActionListener(this.control);
+        mb.add(menu1);
+        mb.add(menu2);
+        mb.add(menu3);
+        JMenu niveles = new JMenu("Niveles");
+        menu2.add(niveles);
+        JMenuItem item1 = new JMenuItem("Facil");
+        JMenuItem item2 = new JMenuItem("Medio");
+        JMenuItem item3 = new JMenuItem("Dificil");
+        item1.addActionListener(this.control);
+        item2.addActionListener(this.control);
+        item3.addActionListener(this.control);
+        niveles.add(item1);
+        niveles.add(item2);
+        niveles.add(item3);
+        this.add(mb);
     }
 
     private void gameOver() {//bien

@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import model.Modelo;
 import vista.Vista;
@@ -13,7 +16,7 @@ import vista.Vista;
  *
  * @author Kevin
  */
-public class Control implements KeyListener{
+public class Control implements KeyListener, ActionListener{
 
     private static final int DELAY = 140;
     private boolean right;
@@ -44,24 +47,32 @@ public class Control implements KeyListener{
         modelo.moveBall();
     }
 
-    public boolean colisionBall() {
-        return modelo.colisionBall();
+    public boolean colisionBall(int i) {
+        return modelo.colisionBall(i);
     }
 
-    public Rectangle getBoundsBall() {
-        return modelo.getBoundsBall();
+    public Rectangle getBoundsBall(int i) {
+        return modelo.getBoundsBall(i);
     }
 
-    public int getDIAMETERBall() {
-        return modelo.getDIAMETERBall();
+    public int getDIAMETERBall(int i) {
+        return modelo.getDIAMETERBall(i);
     }
 
-    public int getXBall() {
-        return modelo.getXBall();
+    public int getXBall(int i) {
+        return modelo.getXBall(i);
     }
 
-    public int getYBall() {
-        return modelo.getYBall();
+    public int getYBall(int i) {
+        return modelo.getYBall(i);
+    }
+    
+    public int TamanoArreglo(){
+        return modelo.TamanoArreglo();
+    }
+    
+    public void subirDeNivel(int i){
+        modelo.subirDeNivel(i);
     }
 
     //------------------------------RAQUETA-------------------------------------
@@ -131,31 +142,65 @@ public class Control implements KeyListener{
             this.left = true;
             this.up = false;
             this.down = false;
+            this.right = false;
+            modelo.moveRaqueta(left, right, down, up);
+            this.left = false;
 
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             this.right = true;
             this.up = false;
             this.down = false;
+            this.left = false;
+            modelo.moveRaqueta(left, right, down, up);
+            this.right = false;
 
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             this.right = false;
             this.up = true;
             this.left = false;
+            this.down = false;
+            modelo.moveRaqueta(left, right, down, up);
+            this.up = false;
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             this.right = false;
             this.down = true;
             this.left = false;
+            this.up = false;
+            modelo.moveRaqueta(left, right, down, up);
+            this.down = true;
         }
-
-        modelo.moveRaqueta(left, right, down, up);
+        if(e.getKeyCode() == KeyEvent.VK_P){
+            vista.pausar();
+        }
+        if(e.getKeyCode() == KeyEvent.VK_O){
+            vista.continuar();
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JMenuItem item = (JMenuItem)e.getSource();
+        JMenu menu = (JMenu)e.getSource();
+        if(item.getText().equals("Facil")){
+            modelo.subirDeNivel(1);
+        }
+        if(item.getText().equals("Medio")){
+            modelo.subirDeNivel(2);
+        }
+        if(item.getText().equals("Dificil")){
+            modelo.subirDeNivel(3);
+        }
+        if(menu.getText().equals("About")){
+            JOptionPane.showMessageDialog(this.vista, "               DODGEBALL 1.0. Programacion III. \n  Escuela de Informática. Universidad Nacional.  2019");
+        }
     }
 
 

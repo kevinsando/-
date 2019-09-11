@@ -10,18 +10,15 @@ public class Modelo extends Observable {
     private final Zona zona; //Arcos
     private final Circulo circ;//Pensar donde va
     private final Contador contador;//¿Pasar a vista?
-    private final Ball[] balls;
-    int k, tam;
+    private final ArregloBolas bolas;
 
     public Modelo() {
         this.raqueta = new Raqueta();
         this.zona = new Zona();
         this.circ = new Circulo();
         this.contador = new Contador();
-        this.ball = new Ball(raqueta, contador, circ);
-        k = 0;
-        tam = 5;
-        this.balls = new Ball[tam];
+        this.ball = new Ball();
+        this.bolas = new ArregloBolas();
 
     }
 
@@ -34,37 +31,47 @@ public class Modelo extends Observable {
 
     //--------------------------------BALL--------------------------------------
     public void moveBall() {
-        ball.move(circ.getTopX(), circ.getTopY(), raqueta.getX(), raqueta.getY());
+        for(int i = 0; i < bolas.Tamano(); i++){
+            bolas.consultar(i).move(circ.getTopX(), circ.getTopY(), raqueta.getX(), raqueta.getY());
+        }
         setChanged();
         notifyObservers(null);
     }
 
-    public boolean colisionBall() {
-        ball.collision(raqueta.getBounds());
-        return ball.isColision();
+    public boolean colisionBall(int i) {
+        bolas.consultar(i).collision(raqueta.getBounds());
+        return bolas.consultar(i).isColision();
 
     }
 
-    public Rectangle getBoundsBall() {
-        return ball.getBounds();
+    public Rectangle getBoundsBall(int i) {
+        return bolas.consultar(i).getBounds();
     }
 
-    public int getDIAMETERBall() {
-        return ball.getDIAMETER();
+    public int getDIAMETERBall(int i) {
+        return bolas.consultar(i).getDIAMETER();
     }
 
-    public int getXBall() {
-        return ball.getX();
+    public int getXBall(int i) {
+        return bolas.consultar(i).getX();
     }
 
-    public int getYBall() {
-        return ball.getY();
+    public int getYBall(int i) {
+        return bolas.consultar(i).getY();
     }
-
-    public void addBall() {
-        if (k < tam) {
-            balls[k++] = new Ball();
-        }
+    
+    public Ball getBola(int i){
+        return bolas.consultar(i);
+    }
+    
+    public int TamanoArreglo(){
+        return bolas.Tamano();
+    }
+    
+    public void subirDeNivel(int i){
+        bolas.subirDeNivel(i);
+        setChanged();
+        notifyObservers(null);
     }
 
     //------------------------------RAQUETA-------------------------------------

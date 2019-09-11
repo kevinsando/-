@@ -21,9 +21,6 @@ public class Ball {//Modelo
         this.y = 0;
         this.xa = 1;
         this.ya = 1;
-    }
-
-    public Ball(Raqueta raq, Contador cont, Circulo cir) {
         this.juego = true;
     }
 
