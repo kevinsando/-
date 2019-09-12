@@ -15,13 +15,11 @@ import static java.awt.image.ImageObserver.ABORT;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 
 public class Vista extends JPanel implements Observer, ActionListener {
@@ -35,11 +33,9 @@ public class Vista extends JPanel implements Observer, ActionListener {
     private static final int width = 300;
     private Timer timer;
     private final int DELAY = 10;
-    private JTextField tf;
-    private JLabel l1;
 
     public Vista(Control control) {
-        ImageIcon iid = new ImageIcon("C:\\Users\\MIGUEL\\Documents\\NetBeansProjects\\Proyecto1 progra 3\\Proyecto1\\src\\vista\\fondo1.png");
+        ImageIcon iid = new ImageIcon("C:\\Users\\dell\\Documents\\Informatica\\Progra III\\DODGEBALL\\src\\vista\\fondo1.png");
         dibujo = iid.getImage();
         enablee = true;
         this.control = control;
@@ -53,7 +49,7 @@ public class Vista extends JPanel implements Observer, ActionListener {
     }
 
     @Override
-    public void paint(Graphics g) {//bien
+    public void paint(Graphics g) {
         super.paint(g);
         doDrawing(g);
     }
@@ -78,10 +74,7 @@ public class Vista extends JPanel implements Observer, ActionListener {
         //--------------------------Dibuja Circulo--------------------------
         //g2d.drawOval(control.getTopXCirculo(), control.getTopYCirculo(), control.getWIDTHCirculo(), control.getWIDTHCirculo());
 
-        //----------------------------Dibuja Zonas--------------------------
-        //g2d.drawRect(control.getXZ(),control.getYZ(),control.getWIDTHZ(),control.getHEIGHTZ());//(x,y,w,h)
-//        g2d.drawRect(control.getXZ(), control.getYZ(), control.getWIDTHZ() - 3, control.getHEIGHTZ() + 10);//(x1,y1,x2,y2)
-//        g2d.drawLine(3000, 250, 190, 300);//(x1,y1,x2,y2)
+
         
 
 ////--------------------Zonas Verdes-----------------------------------------
@@ -94,9 +87,9 @@ public class Vista extends JPanel implements Observer, ActionListener {
 //        
 //        //-----------------------Zonas Rojas-----------------------------------
 //        g2d.setColor(Color.RED);
-//        g2d.drawRect(220, 80, control.getWIDTHZ(), control.getHEIGHTZ());
+//        g2d.drawRect(240, 70, control.getWIDTHZ(), control.getHEIGHTZ());//Listo
 //        g2d.drawRect(30, 65, control.getWIDTHZ(), control.getHEIGHTZ());
-//        g2d.drawRect(220, 260, control.getWIDTHZ(), control.getHEIGHTZ());
+//        g2d.drawRect(220, 270, control.getWIDTHZ(), control.getHEIGHTZ());
 //        g2d.drawRect(15, 250, control.getWIDTHZ(), control.getHEIGHTZ());
         
         
@@ -126,34 +119,38 @@ public class Vista extends JPanel implements Observer, ActionListener {
         mb.add(menu2);
         mb.add(menu3);
         JMenu niveles = new JMenu("Niveles");
+        
         menu2.add(niveles);
         JMenuItem item1 = new JMenuItem("Facil");
         JMenuItem item2 = new JMenuItem("Medio");
         JMenuItem item3 = new JMenuItem("Dificil");
+        JMenuItem item4 = new JMenuItem("exit");
+        JMenuItem item5 = new JMenuItem("Informacion");
+        menu1.add(item4);
+        menu3.add(item5);
         item1.addActionListener(this.control);
         item2.addActionListener(this.control);
         item3.addActionListener(this.control);
+        item4.addActionListener(this.control);
+        item5.addActionListener(this.control);
         niveles.add(item1);
         niveles.add(item2);
         niveles.add(item3);
         this.add(mb);
-        int puntaje = 0;
-        //        tf = new JTextField();
-        //        l1 = new JLabel();
-        //        l1.setText("Puntaje: ");
-        //        tf.setText(Integer.toString(puntaje));
-        //        tf.setForeground(RED);
-        //        this.add(l1);
-        //        this.add(tf);
         control.mostrarContador();
         this.add(control.getTextoC());
         this.add(control.getPuntosC());
     }
 
-    private void gameOver() {//bien
+    public void gameOver() {//bien
 
-        JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
+        JOptionPane.showMessageDialog(this, "Hasta Pronto", "Gracias por jugar", JOptionPane.YES_NO_OPTION);
         System.exit(ABORT);
+    }
+        public void info() {
+
+        JOptionPane.showMessageDialog(this, "DODGEBALL 1.0. Programacion III.  Escuela de Informática. Universidad Nacional.  2019 \n Creadores: Kevin Sandoval- Miguel Rodriguez", "Sobre el juego: ", JOptionPane.YES_NO_OPTION);
+
     }
 
     @Override
@@ -173,17 +170,14 @@ public class Vista extends JPanel implements Observer, ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {//borde
+    public void actionPerformed(ActionEvent e) {
         mb.setVisible(true);
         mb.setBackground(Color.red);
         mb.move(0, 380);
-//        l1.move(150, 380);
-//        tf.move(200, 380);
         if (enablee) {
             for (int i = 0; i < control.TamanoArreglo(); i++) {
                 control.choque(control.getBola(i));
                 control.colisionBall(i);
-               // control.colisionZona();
             }
 
             control.moveBall();
@@ -196,12 +190,3 @@ public class Vista extends JPanel implements Observer, ActionListener {
     }
 }
 
-
-/*----------------------------------------------------------
-* Falta:
-* Arreglo bolas
-* Problema velocidad bola
-* Zonas
-* Contador
-*
- */
