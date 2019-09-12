@@ -39,14 +39,12 @@ public class Vista extends JPanel implements Observer, ActionListener {
     private JLabel l1;
 
     public Vista(Control control) {
-        ImageIcon iid = new ImageIcon("C:\\Users\\dell\\Documents\\Informatica\\Progra III\\DODGEBALL\\src\\vista\\fondo.png");
+        ImageIcon iid = new ImageIcon("C:\\Users\\dell\\Documents\\Informatica\\Progra III\\DODGEBALL\\src\\vista\\fondo1.png");
         dibujo = iid.getImage();
-
         enablee = true;
         this.control = control;
         this.control.setVista(this);
         this.control.agregarObservador(this);
-        this.setBackground(BLACK);
         addKeyListener(control);
         setFocusable(true);
         iniciar();
@@ -57,7 +55,6 @@ public class Vista extends JPanel implements Observer, ActionListener {
     @Override
     public void paint(Graphics g) {//bien
         super.paint(g);
-        super.setBackground(BLACK);
         doDrawing(g);
     }
 
@@ -84,7 +81,7 @@ public class Vista extends JPanel implements Observer, ActionListener {
         //----------------------------Dibuja Zonas--------------------------
         g2d.setColor(Color.YELLOW);
         //g2d.drawRect(control.getXZ(),control.getYZ(),control.getWIDTHZ(),control.getHEIGHTZ());//(x,y,w,h)
-        g2d.drawLine(control.getXZ(), control.getYZ(), control.getWIDTHZ()-3, control.getHEIGHTZ()+10);//(x1,y1,x2,y2)
+        g2d.drawRect(control.getXZ(), control.getYZ(), control.getWIDTHZ() - 3, control.getHEIGHTZ() + 10);//(x1,y1,x2,y2)
         g2d.drawLine(3000, 250, 190, 300);//(x1,y1,x2,y2)
 
     }
@@ -124,14 +121,16 @@ public class Vista extends JPanel implements Observer, ActionListener {
         niveles.add(item3);
         this.add(mb);
         int puntaje = 0;
-
-        tf = new JTextField();
-        l1 = new JLabel();
-        l1.setText("Puntaje: ");
-        tf.setText(Integer.toString(puntaje));
-        tf.setForeground(RED);
-        this.add(l1);
-        this.add(tf);
+        //        tf = new JTextField();
+        //        l1 = new JLabel();
+        //        l1.setText("Puntaje: ");
+        //        tf.setText(Integer.toString(puntaje));
+        //        tf.setForeground(RED);
+        //        this.add(l1);
+        //        this.add(tf);
+        control.mostrarContador();
+        this.add(control.getTextoC());
+        this.add(control.getPuntosC());
     }
 
     private void gameOver() {//bien
@@ -161,11 +160,12 @@ public class Vista extends JPanel implements Observer, ActionListener {
         mb.setVisible(true);
         mb.setBackground(Color.red);
         mb.move(0, 380);
-        l1.move(150, 380);
-        tf.move(200, 380);
+//        l1.move(150, 380);
+//        tf.move(200, 380);
         if (enablee) {
             for (int i = 0; i < control.TamanoArreglo(); i++) {
                 control.colisionBall(i);
+               // control.colisionZona();
             }
 
             control.moveBall();

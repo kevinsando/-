@@ -25,10 +25,19 @@ public class Contador {
         l1.setText("Puntaje: ");
         tf.setText(Integer.toString(puntaje));
         tf.setForeground(RED);
-        l1.move(230, 60);
-        tf.move(290, 60);
+        l1.move(150, 380);
+        tf.move(200, 380);
 
-      //  game.add(l1);
-      //  game.add(tf);
     }
+    public JLabel getTexto(){
+        return l1;
+        
+    }
+    public  JTextField getPuntos(){
+        return tf;
+    }
+    public int getPuntaje(){
+        return puntaje;
+    }
+
 }

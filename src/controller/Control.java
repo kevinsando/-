@@ -5,9 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Observer;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 import model.Modelo;
 import vista.Vista;
@@ -38,6 +41,12 @@ public class Control implements KeyListener, ActionListener{
 
     public void setVista(Vista vista) {
         this.vista = vista;
+    }
+    public void agregarObservador(Observer ob){
+        modelo.addObserver(ob);
+    }
+    public int getPuntaje(){
+        return modelo.getPuntaje();
     }
 
 
@@ -104,7 +113,20 @@ public class Control implements KeyListener, ActionListener{
     public boolean colisionZona() {
         return modelo.colisionZona();
     }
+ public int getYZ() {
+        return modelo.getXZ();
+    }
 
+    public int getXZ() {
+        return modelo.getYZ();
+    }
+    public int getWIDTHZ() {
+        return modelo.getWIDTHZ();
+    }
+
+    public int getHEIGHTZ() {
+        return modelo.getHEIGHTZ();
+    }
     //------------------------------Contador------------------------------------
     public void setPuntosContador(int i) {
         modelo.setPuntosContador(i);
@@ -112,6 +134,14 @@ public class Control implements KeyListener, ActionListener{
 
     public void mostrarContador() {
         modelo.mostrar();
+    }
+        public JLabel getTextoC() {
+        return modelo.getTextoC();
+
+    }
+
+    public JTextField getPuntosC() {
+        return modelo.getPuntosC();
     }
     //------------------------------Circulo------------------------------------
 
@@ -188,7 +218,7 @@ public class Control implements KeyListener, ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JMenuItem item = (JMenuItem)e.getSource();
-        JMenu menu = (JMenu)e.getSource();
+//        JMenu menu = (JMenu)e.getSource();
         if(item.getText().equals("Facil")){
             modelo.subirDeNivel(1);
         }
@@ -198,9 +228,9 @@ public class Control implements KeyListener, ActionListener{
         if(item.getText().equals("Dificil")){
             modelo.subirDeNivel(3);
         }
-        if(menu.getText().equals("About")){
-            JOptionPane.showMessageDialog(this.vista, "               DODGEBALL 1.0. Programacion III. \n  Escuela de Informática. Universidad Nacional.  2019");
-        }
+//        if(menu.getText().equals("About")){
+//            JOptionPane.showMessageDialog(this.vista, "               DODGEBALL 1.0. Programacion III. \n  Escuela de Informática. Universidad Nacional.  2019");
+//        }
     }
 
 

@@ -26,7 +26,7 @@ public class Ball {//Modelo
         this.juego = true;
     }
 
-    public void move(int cY, int cX, int rX, int rY) {
+    public void move(int cY, int cX, int rX, int rY, Contador contador) {
         if (getX() + xa < 34) {//Borde Izquierdo
             xa = 1;
         }
@@ -52,7 +52,10 @@ public class Ball {//Modelo
                 y = rX + getDIAMETER();
                 y = rY + getDIAMETER();
             }
-
+            //contador.setPuntaje(1);
+        }
+        if(ab){
+            contador.setPuntaje(1);
         }
         x += xa;
         y += ya;
@@ -91,10 +94,9 @@ public class Ball {//Modelo
         return colision;
     }
 
-    public void colisionPuntos(Rectangle l,Contador contador) {
-        if(l.intersects(getBounds())){
-            contador.setPuntaje(1);
-        }
+    public void colisionPuntos(Rectangle l, Contador contador) {
+        ab = l.intersects(getBounds());
+        contador.setPuntaje(1);
 
     }
 
