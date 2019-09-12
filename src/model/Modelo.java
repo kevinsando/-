@@ -2,6 +2,8 @@ package model;
 
 import java.awt.Rectangle;
 import java.util.Observable;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class Modelo extends Observable {
 
@@ -14,9 +16,10 @@ public class Modelo extends Observable {
 
     public Modelo() {
         this.raqueta = new Raqueta();
-        this.zona = new Zona();
-        this.circ = new Circulo();
         this.contador = new Contador();
+        this.zona = new Zona(contador,true);
+        this.circ = new Circulo();
+        
         this.ball = new Ball();
         this.bolas = new ArregloBolas();
 
@@ -31,8 +34,8 @@ public class Modelo extends Observable {
 
     //--------------------------------BALL--------------------------------------
     public void moveBall() {
-        for(int i = 0; i < bolas.Tamano(); i++){
-            bolas.consultar(i).move(circ.getTopX(), circ.getTopY(), raqueta.getX(), raqueta.getY());
+        for (int i = 0; i < bolas.Tamano(); i++) {
+            bolas.consultar(i).move(circ.getTopX(), circ.getTopY(), raqueta.getX(), raqueta.getY(),contador);
         }
         setChanged();
         notifyObservers(null);
@@ -59,19 +62,22 @@ public class Modelo extends Observable {
     public int getYBall(int i) {
         return bolas.consultar(i).getY();
     }
-    
-    public Ball getBola(int i){
+
+    public Ball getBola(int i) {
         return bolas.consultar(i);
     }
-    
-    public int TamanoArreglo(){
+
+    public int TamanoArreglo() {
         return bolas.Tamano();
     }
-    
-    public void subirDeNivel(int i){
+
+    public void subirDeNivel(int i) {
         bolas.subirDeNivel(i);
         setChanged();
         notifyObservers(null);
+    }
+    public void contadorPuntos(){
+        ball.colisionPuntos(zona.getBounds(), contador);
     }
 
     //------------------------------RAQUETA-------------------------------------
@@ -110,6 +116,29 @@ public class Modelo extends Observable {
         return zona.collision();
     }
 
+   public int getXZ(){
+        return zona.getX();
+    }
+    
+    public int getYZ(){
+        return zona.getY();
+    }
+    
+    public int getWIDTHZ(){
+        return zona.getWIDTH();
+    }
+    
+    public int getHEIGHTZ(){
+        return zona.getHEIGHT();
+    }
+    
+    public void choque(Ball bol){
+        zona.choque(bol);
+        setChanged();
+        notifyObservers(null);
+    }
+
+
     //------------------------------Contador------------------------------------
     public void setPuntosContador(int i) {
         contador.setPuntaje(i);
@@ -127,6 +156,18 @@ public class Modelo extends Observable {
         return ball.juego;
     }
 
+    public JLabel getTextoC() {
+        return contador.getTexto();
+
+    }
+
+    public JTextField getPuntosC() {
+        return contador.getPuntos();
+    }
+        public int getPuntaje() {
+        return contador.getPuntaje();
+    }
+
     //------------------------------Circulo------------------------------------
     public int getTopYCirculo() {
         return circ.getTopY();
@@ -139,5 +180,7 @@ public class Modelo extends Observable {
     public int getWIDTHCirculo() {
         return circ.getWIDTH();
     }
+
+
 
 }
