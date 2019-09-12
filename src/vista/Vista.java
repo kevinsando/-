@@ -152,6 +152,7 @@ public class Vista extends JPanel implements Observer, ActionListener {
         JOptionPane.showMessageDialog(this, "DODGEBALL 1.0. Programacion III.  Escuela de Informática. Universidad Nacional.  2019 \n Creadores: Kevin Sandoval- Miguel Rodriguez", "Sobre el juego: ", JOptionPane.YES_NO_OPTION);
 
     }
+        //
 
     @Override
     public int getWidth() {
