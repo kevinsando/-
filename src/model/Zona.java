@@ -15,16 +15,18 @@ public class Zona {//Modelo
     private int Y;
     private int X;
     boolean tipo;
+    boolean puntoSumado;
     private Contador contador;
  //  Game game;
     
     
-    public Zona(Contador cont, boolean tipo){
+    public Zona(int x, int y, Contador cont, boolean tipo){
    //     this.game = game;
-        this.X = 250;//x;
-        this.Y = 170;//y;
+        this.X = x;//x;
+        this.Y = y;//y;
         this.contador = cont;
         this.tipo = tipo;
+        this.puntoSumado = false;
     }
     
 //    public void paint(Graphics2D g,  Color c,int x,int y, int w,int h,int sA, int aA,int tang) {//No va
@@ -49,11 +51,21 @@ public class Zona {//Modelo
     }
     
     public void choque(Ball bola){
-        if(area().contains(bola.getX(), bola.getY()) && tipo == true){
-            contador.setPuntaje(1);
+        if(area().contains(bola.getX(), bola.getY())){
+            if(tipo == true && puntoSumado == false){
+                contador.setPuntaje(1);
+                puntoSumado = true;
+            }
+        }else{
+            puntoSumado = false;
         }
-        if(area().contains(bola.getX(), bola.getY()) && tipo == false){
-            contador.setPuntaje(-1);
+        if(area().contains(bola.getX(), bola.getY())){
+            if(tipo == false && puntoSumado == false){
+                contador.setPuntaje(-1);
+                puntoSumado = true;
+            }
+        }else{
+            puntoSumado = false;
         }
     }
     

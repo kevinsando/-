@@ -39,7 +39,7 @@ public class Vista extends JPanel implements Observer, ActionListener {
     private JLabel l1;
 
     public Vista(Control control) {
-        ImageIcon iid = new ImageIcon("C:\\Users\\dell\\Documents\\Informatica\\Progra III\\DODGEBALL\\src\\vista\\fondo1.png");
+        ImageIcon iid = new ImageIcon("C:\\Users\\MIGUEL\\Documents\\NetBeansProjects\\Proyecto1 progra 3\\Proyecto1\\src\\vista\\fondo1.png");
         dibujo = iid.getImage();
         enablee = true;
         this.control = control;
@@ -79,10 +79,27 @@ public class Vista extends JPanel implements Observer, ActionListener {
         //g2d.drawOval(control.getTopXCirculo(), control.getTopYCirculo(), control.getWIDTHCirculo(), control.getWIDTHCirculo());
 
         //----------------------------Dibuja Zonas--------------------------
-        g2d.setColor(Color.YELLOW);
         //g2d.drawRect(control.getXZ(),control.getYZ(),control.getWIDTHZ(),control.getHEIGHTZ());//(x,y,w,h)
-        g2d.drawRect(control.getXZ(), control.getYZ(), control.getWIDTHZ() - 3, control.getHEIGHTZ() + 10);//(x1,y1,x2,y2)
-        g2d.drawLine(3000, 250, 190, 300);//(x1,y1,x2,y2)
+//        g2d.drawRect(control.getXZ(), control.getYZ(), control.getWIDTHZ() - 3, control.getHEIGHTZ() + 10);//(x1,y1,x2,y2)
+//        g2d.drawLine(3000, 250, 190, 300);//(x1,y1,x2,y2)
+        
+
+////--------------------Zonas Verdes-----------------------------------------
+//        g2d.setColor(Color.GREEN);
+//        g2d.drawRect(245, 170, control.getWIDTHZ(), control.getHEIGHTZ());
+//        g2d.drawRect(0, 160, control.getWIDTHZ(), control.getHEIGHTZ());
+//        g2d.drawRect(125, 40, control.getWIDTHZ(), control.getHEIGHTZ());
+//        g2d.drawRect(125, 300, control.getWIDTHZ(), control.getHEIGHTZ());
+//        
+//        
+//        //-----------------------Zonas Rojas-----------------------------------
+//        g2d.setColor(Color.RED);
+//        g2d.drawRect(220, 80, control.getWIDTHZ(), control.getHEIGHTZ());
+//        g2d.drawRect(30, 65, control.getWIDTHZ(), control.getHEIGHTZ());
+//        g2d.drawRect(220, 260, control.getWIDTHZ(), control.getHEIGHTZ());
+//        g2d.drawRect(15, 250, control.getWIDTHZ(), control.getHEIGHTZ());
+        
+        
 
     }
 
@@ -164,6 +181,7 @@ public class Vista extends JPanel implements Observer, ActionListener {
 //        tf.move(200, 380);
         if (enablee) {
             for (int i = 0; i < control.TamanoArreglo(); i++) {
+                control.choque(control.getBola(i));
                 control.colisionBall(i);
                // control.colisionZona();
             }

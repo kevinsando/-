@@ -12,6 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import model.Ball;
 import model.Modelo;
 import vista.Vista;
 
@@ -67,6 +68,10 @@ public class Control implements KeyListener, ActionListener{
     public int getDIAMETERBall(int i) {
         return modelo.getDIAMETERBall(i);
     }
+    
+    public Ball getBola(int i) {
+        return modelo.getBola(i);
+    }
 
     public int getXBall(int i) {
         return modelo.getXBall(i);
@@ -113,7 +118,12 @@ public class Control implements KeyListener, ActionListener{
     public boolean colisionZona() {
         return modelo.colisionZona();
     }
- public int getYZ() {
+    
+    public void choque(Ball bol){
+        modelo.choque(bol);
+    }
+    
+    public int getYZ() {
         return modelo.getXZ();
     }
 

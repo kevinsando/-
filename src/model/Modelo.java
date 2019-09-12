@@ -10,6 +10,7 @@ public class Modelo extends Observable {
     private final Ball ball;
     private final Raqueta raqueta;
     private final Zona zona; //Arcos
+    private ArregloZonas zonas;
     private final Circulo circ;//Pensar donde va
     private final Contador contador;//¿Pasar a vista?
     private final ArregloBolas bolas;
@@ -17,9 +18,10 @@ public class Modelo extends Observable {
     public Modelo() {
         this.raqueta = new Raqueta();
         this.contador = new Contador();
-        this.zona = new Zona(contador,true);
+        this.zona = new Zona(245, 170, contador, true);
+        this.zonas = new ArregloZonas();
+        this.zonas.iniciarZonas(contador);
         this.circ = new Circulo();
-        
         this.ball = new Ball();
         this.bolas = new ArregloBolas();
 
@@ -35,7 +37,7 @@ public class Modelo extends Observable {
     //--------------------------------BALL--------------------------------------
     public void moveBall() {
         for (int i = 0; i < bolas.Tamano(); i++) {
-            bolas.consultar(i).move(circ.getTopX(), circ.getTopY(), raqueta.getX(), raqueta.getY(),contador);
+            bolas.consultar(i).move(circ.getTopX(), circ.getTopY(), raqueta.getX(), raqueta.getY(), contador);
         }
         setChanged();
         notifyObservers(null);
@@ -133,7 +135,7 @@ public class Modelo extends Observable {
     }
     
     public void choque(Ball bol){
-        zona.choque(bol);
+        zonas.choque(bol);
         setChanged();
         notifyObservers(null);
     }

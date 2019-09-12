@@ -52,7 +52,7 @@ public class Ball {//Modelo
                 y = rX + getDIAMETER();
                 y = rY + getDIAMETER();
             }
-            //contador.setPuntaje(1);
+//            contador.setPuntaje(1);
         }
         if(ab){
             contador.setPuntaje(1);
