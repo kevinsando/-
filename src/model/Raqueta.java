@@ -2,7 +2,7 @@ package model;
 
 import java.awt.Rectangle;
 
-public class Raqueta {//Modelo
+public class Raqueta {
 
 
     private final int WIDTH = 60;

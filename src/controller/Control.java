@@ -7,22 +7,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observer;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import model.Ball;
 import model.Modelo;
 import vista.Vista;
 
-/**
- *
- * @author Kevin
- */
 public class Control implements KeyListener, ActionListener{
 
-    private static final int DELAY = 140;
+
     private boolean right;
     private boolean left;
     private boolean up;
@@ -87,6 +81,9 @@ public class Control implements KeyListener, ActionListener{
     
     public void subirDeNivel(int i){
         modelo.subirDeNivel(i);
+    }
+    public void colisionBolas(){
+        modelo.colisionBolas();
     }
 
     //------------------------------RAQUETA-------------------------------------
@@ -228,7 +225,6 @@ public class Control implements KeyListener, ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JMenuItem item = (JMenuItem)e.getSource();
-//        JMenu menu = (JMenu)e.getSource();
         if(item.getText().equals("Facil")){
             modelo.subirDeNivel(1);
         }
@@ -238,9 +234,12 @@ public class Control implements KeyListener, ActionListener{
         if(item.getText().equals("Dificil")){
             modelo.subirDeNivel(3);
         }
-//        if(menu.getText().equals("About")){
-//            JOptionPane.showMessageDialog(this.vista, "               DODGEBALL 1.0. Programacion III. \n  Escuela de Informática. Universidad Nacional.  2019");
-//        }
+        if(item.getText().equals("exit")){
+            vista.gameOver();
+        }
+        if(item.getText().equals("Informacion")){
+           vista.info();
+        }
     }
 
 

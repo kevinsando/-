@@ -7,12 +7,12 @@ import javax.swing.JTextField;
 
 public class Contador {
 
-    public int puntaje = 0;
+    public int puntaje;
     JTextField tf;
     JLabel l1; 
 
     public Contador() {
-        this.puntaje =0;
+        this.puntaje =00;
         this.tf = new JTextField();
         this.l1 = new JLabel();
     }
@@ -25,6 +25,7 @@ public class Contador {
         l1.setText("Puntaje: ");
         tf.setText(Integer.toString(puntaje));
         tf.setForeground(RED);
+        tf.setSize(50, 20);
         l1.move(150, 380);
         tf.move(200, 380);
 

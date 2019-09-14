@@ -9,10 +9,10 @@ public class Modelo extends Observable {
 
     private final Ball ball;
     private final Raqueta raqueta;
-    private final Zona zona; //Arcos
+    private final Zona zona;
     private ArregloZonas zonas;
-    private final Circulo circ;//Pensar donde va
-    private final Contador contador;//¿Pasar a vista?
+    private final Circulo circ;
+    private final Contador contador;
     private final ArregloBolas bolas;
 
     public Modelo() {
@@ -71,6 +71,9 @@ public class Modelo extends Observable {
 
     public int TamanoArreglo() {
         return bolas.Tamano();
+    }
+    public void colisionBolas(){
+        bolas.colision();
     }
 
     public void subirDeNivel(int i) {

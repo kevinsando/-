@@ -1,12 +1,9 @@
 package model;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
-public class Ball {//Modelo
+public class Ball {
 
     private static final int DIAMETER = 30;
     private double x;
@@ -16,6 +13,9 @@ public class Ball {//Modelo
     boolean juego;
     boolean colision;
     boolean ab;
+    boolean colisionBolas;
+    int bx;
+    int by;
     Contador contador;
 
     public Ball() {
@@ -23,7 +23,10 @@ public class Ball {//Modelo
         this.y = 70;
         this.xa = 1;
         this.ya = 1;
+        this.bx=0;
+        this.by=0;
         this.juego = true;
+        this.colisionBolas = false;
     }
 
     public void move(int cY, int cX, int rX, int rY, Contador contador) {
@@ -52,10 +55,21 @@ public class Ball {//Modelo
                 y = rX + getDIAMETER();
                 y = rY + getDIAMETER();
             }
-//            contador.setPuntaje(1);
+
         }
-        if(ab){
+        if (ab) {
             contador.setPuntaje(1);
+        }
+        if (colisionBolas) {
+            if (ya > 0) {
+                ya = -1;
+                y = bx - getDIAMETER();
+                y = by - getDIAMETER();
+            } else {
+                ya = +1;
+                y = bx + getDIAMETER();
+                y = by + getDIAMETER();
+            }
         }
         x += xa;
         y += ya;
@@ -97,7 +111,12 @@ public class Ball {//Modelo
     public void colisionPuntos(Rectangle l, Contador contador) {
         ab = l.intersects(getBounds());
         contador.setPuntaje(1);
+    }
 
+    public void colisionBolas(Rectangle rac,int x, int y) {
+        colisionBolas = rac.intersects(getBounds());
+        bx=x;
+        by=y;
     }
 
 }

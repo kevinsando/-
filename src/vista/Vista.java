@@ -182,7 +182,7 @@ public class Vista extends JPanel implements Observer, ActionListener {
             }
 
             control.moveBall();
-
+            control.colisionBolas();
             control.mostrarContador();
 
         } else {
