@@ -49,7 +49,6 @@ public class Zona {
             puntoSumado = false;
         }
     }
-
     private Rectangle area() {
         Rectangle r = new Rectangle(getX(), getY(), getWIDTH(), getHEIGHT());
         return r.getBounds();

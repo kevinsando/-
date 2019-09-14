@@ -118,5 +118,4 @@ public class Ball {
         bx=x;
         by=y;
     }
-
 }

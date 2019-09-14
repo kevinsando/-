@@ -25,7 +25,6 @@ public class Aplication extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBackground(Color.black);
     }
-
     public static void main(String[] args) {
 
         EventQueue.invokeLater(() -> {

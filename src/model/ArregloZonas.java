@@ -38,5 +38,4 @@ public class ArregloZonas {
         zonas.add(new Zona(220, 260,contador, false));
         zonas.add(new Zona(15, 250,contador, false));
     }
-    
 }

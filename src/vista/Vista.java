@@ -169,7 +169,6 @@ public class Vista extends JPanel implements Observer, ActionListener {
         this.timer.start();
 
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         mb.setVisible(true);

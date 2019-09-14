@@ -40,5 +40,4 @@ public class Contador {
     public int getPuntaje(){
         return puntaje;
     }
-
 }

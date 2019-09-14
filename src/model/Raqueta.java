@@ -66,5 +66,4 @@ public class Raqueta {
     public int getX() {
         return x;
     }
-
 }
